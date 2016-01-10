@@ -109,10 +109,18 @@ Return true.
 
 ### Other
 
-#### rcswitch.send(`codeWord`)
+#### rcswitch.send(`code`)
 
-Send raw codeword.
+Send raw code.
 
-* `codeword` - (String) codeword
+* `code` - (String) code
+
+Return true.
+
+#### rcswitch.sendTriState(`code`)
+
+Send tri-state code.
+
+* `code` - (String) tri-state code
 
 Return true.
