@@ -20,6 +20,7 @@ class RCSwitchNode : public Nan::ObjectWrap {
   #define switchOp3(p1, p2, p3) { if(switchOn) thiz->rcswitch.switchOn((p1), (p2), (p3)); else thiz->rcswitch.switchOff((p1), (p2), (p3)); }
   static void New(const Nan::FunctionCallbackInfo<v8::Value>& info);
   static void Send(const Nan::FunctionCallbackInfo<v8::Value>& info);
+  static void SendTriState(const Nan::FunctionCallbackInfo<v8::Value>& info);
   static void EnableTransmit(const Nan::FunctionCallbackInfo<v8::Value>& info);
   static void DisableTransmit(const Nan::FunctionCallbackInfo<v8::Value>& info);
   static void SwitchOn(const Nan::FunctionCallbackInfo<v8::Value>& info);
