@@ -24,6 +24,7 @@ void RCSwitchNode::Init(v8::Local<v8::Object> exports) {
   Nan::SetPrototypeMethod(tpl, "disableTransmit", DisableTransmit);
   Nan::SetPrototypeMethod(tpl, "switchOn", SwitchOn);
   Nan::SetPrototypeMethod(tpl, "switchOff", SwitchOff);
+  Nan::SetPrototypeMethod(tpl, "sendTriState", SendTriState);
 
   constructor.Reset(tpl->GetFunction());
   exports->Set(Nan::New("RCSwitch").ToLocalChecked(), tpl->GetFunction());
@@ -91,6 +92,16 @@ void RCSwitchNode::Send(const Nan::FunctionCallbackInfo<v8::Value>& info) {
   Nan::Utf8String v8str(info[0]);
   obj->rcswitch.send(*v8str);
 
+  info.GetReturnValue().Set(true);
+}
+
+void RCSwitchNode::SendTriState(const Nan::FunctionCallbackInfo<v8::Value>& info) {
+  Nan::HandleScope scope;
+
+  RCSwitchNode* obj = ObjectWrap::Unwrap<RCSwitchNode>(info.Holder());
+
+  Nan::Utf8String v8str(info[0]);
+  obj->rcswitch.sendTriState(*v8str);
   info.GetReturnValue().Set(true);
 }
 
