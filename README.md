@@ -124,3 +124,23 @@ Send tri-state code.
 * `code` - (String) tri-state code
 
 Return true.
+
+This function is usefull for eg. micro-electric AS 73 witch is also sold as REV Telecontrol in Germany (Version with house code with 6 DIP switches).
+
+This socket has 10 DIP-Switches.
+
+The house code use the first 6 switches, the receiver code is set by the next 4 switches. For the house code the switch position OFF is represented by F and switch position on ON by 0.
+
+Receiver codes:
+
+Channel	Swichtes 7-10
+* `0FFF` Channel A
+* `F0FF` Channel B
+* `FFF0` Channel C
+* `FF0F` Channel D
+
+* `FF` or `F0` Button on
+* `0F` Button off
+
+The input string for the function is `[homecode][channel][on/off value]` 
+e.g. F000000FFFFF for homecode 100000 Channel A button on.
