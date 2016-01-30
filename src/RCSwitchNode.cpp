@@ -39,8 +39,8 @@ void RCSwitchNode::SwitchOp(const Nan::FunctionCallbackInfo<v8::Value>& info, bo
 
   info.GetReturnValue().Set(false);
   if(info.Length() == 2) {
-    v8::Handle<v8::Value> group = info[0];
-    v8::Handle<v8::Value> swtch = info[1];
+    v8::Local<v8::Value> group = info[0];
+    v8::Local<v8::Value> swtch = info[1];
 
     if(group->IsInt32() && swtch->IsInt32()) {
       switchOp2(group->Int32Value(), swtch->Int32Value());
@@ -54,9 +54,9 @@ void RCSwitchNode::SwitchOp(const Nan::FunctionCallbackInfo<v8::Value>& info, bo
       }
     }
   } else if(info.Length() == 3) {
-    v8::Handle<v8::Value> famly = info[0];
-    v8::Handle<v8::Value> group = info[1];
-    v8::Handle<v8::Value> devce = info[2];
+    v8::Local<v8::Value> famly = info[0];
+    v8::Local<v8::Value> group = info[1];
+    v8::Local<v8::Value> devce = info[2];
 
     if(famly->IsString() && group->IsInt32() && devce->IsInt32()) {
       Nan::Utf8String v8str(famly);
