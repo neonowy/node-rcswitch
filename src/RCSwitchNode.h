@@ -37,6 +37,8 @@ class RCSwitchNode : public Nan::ObjectWrap {
 
   static void SetProtocol(v8::Local<v8::String> property, v8::Local<v8::Value> value, const Nan::PropertyCallbackInfo<v8::Value>& info);
   static void GetProtocol(v8::Local<v8::String> property, const Nan::PropertyCallbackInfo<v8::Value>& info);
+
+  static void SetPulseLength(const Nan::FunctionCallbackInfo<v8::Value>& info);
 };
 
 #endif

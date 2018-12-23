@@ -34,6 +34,7 @@ void RCSwitchNode::Init(v8::Local<v8::Object> exports) {
   Nan::SetPrototypeMethod(tpl, "getReceivedDelay", GetReceivedDelay);
   Nan::SetPrototypeMethod(tpl, "getReceivedProtocol", GetReceivedProtocol);
   Nan::SetPrototypeMethod(tpl, "getReceivedRawdata", GetReceivedRawdata);
+  Nan::SetPrototypeMethod(tpl, "setPulseLength", SetPulseLength);
 
   constructor.Reset(tpl->GetFunction());
   exports->Set(Nan::New("RCSwitch").ToLocalChecked(), tpl->GetFunction());
@@ -242,4 +243,18 @@ void RCSwitchNode::GetReceivedRawdata(const Nan::FunctionCallbackInfo<v8::Value>
     Nan::Set(array, i, Nan::New(data[i]));
   }
   info.GetReturnValue().Set(array);
+}
+
+// notification.setPulseLength();
+void RCSwitchNode::SetPulseLength(const Nan::FunctionCallbackInfo<v8::Value>& info) {
+  Nan::HandleScope scope;
+  RCSwitchNode* obj = ObjectWrap::Unwrap<RCSwitchNode>(info.Holder());
+
+  v8::Local<v8::Value> pulseLength = info[0];
+  if(pulseLength->IsInt32()) {
+    obj->rcswitch.setPulseLength(pulseLength->Int32Value());
+    info.GetReturnValue().Set(true);
+  } else {
+    info.GetReturnValue().Set(false);
+  }
 }
